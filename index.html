@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile Cards</title>
+<style>
+    /* 🌸 Glass Background for Body */
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, rgba(161,140,209,0.9), rgba(251,194,235,0.9));
+        min-height: 100vh;
+        text-align: center;
+        padding: 30px;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+  h1 {
+    color: white;
+    font-size: 1.8rem; /* decreased from 2.5rem */
+    text-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 16px; /* slightly smaller padding */
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+
+    /* 🌟 Glass Button */
+    #create-btn {
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.4);
+        padding: 12px 25px;
+        cursor: pointer;
+        border-radius: 50px;
+        font-size: 18px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+    #create-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+    }
+
+    /* 📦 Glass Container for Cards */
+    #card-container {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+        max-width: 1000px;
+    }
+
+    /* 🎴 Glass Card */
+    .card {
+        background: rgba(231, 93, 93, 0.15);
+        border: 1px solid rgba(255,255,255,0.4);
+        border-radius: 15px;
+        width: 230px;
+        padding: 20px;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeIn 0.5s ease forwards;
+        color: white;
+    }
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    .card h3 {
+        margin: 0;
+        font-size: 22px;
+    }
+    .card p {
+        font-size: 16px;
+        margin-top: 5px;
+    }
+
+    /* ❌ Glass Delete Button */
+    .delete-btn {
+        margin-top: 15px;
+        background: rgba(255, 0, 0, 0.3);
+        border: 1px solid rgba(255,0,0,0.5);
+        color: white;
+        padding: 8px 15px;
+        cursor: pointer;
+        border-radius: 8px;
+        backdrop-filter: blur(8px);
+        transition: all 0.3s ease;
+    }
+    .delete-btn:hover {
+        background: rgba(255, 0, 0, 0.5);
+    }
+
+    /* ✨ Animation */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 📱 Responsive */
+    @media (max-width: 500px) {
+        .card { width: 90%; }
+    }
+</style>
+</head>
+<body>
+
+<h1>💼Profile Cards</h1>
+<button id="create-btn">+ Add Profile</button>
+<div id="card-container"></div>
+
+<script>
+    const container = document.getElementById("card-container");
+    const createBtn = document.getElementById("create-btn");
+
+    createBtn.addEventListener("click", () => {
+        const name = prompt("Enter Name:");
+        const role = prompt("Enter Role:");
+
+        if (name && role) {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+                <h3>${name}</h3>
+                <p>${role}</p>
+                <button class="delete-btn">Delete</button>
+            `;
+
+            card.querySelector(".delete-btn").addEventListener("click", () => {
+                card.remove();
+            });
+
+            container.appendChild(card);
+        }
+    });
+</script>
+
+</body>
+</html>
